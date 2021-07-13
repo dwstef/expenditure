@@ -1,4 +1,4 @@
-package com.java.ds.expenditure.model;
+package com.java.ds.expenditure.model.period;
 
 import com.java.ds.expenditure.model.payments.Payment;
 
@@ -7,8 +7,15 @@ import java.util.ArrayList;
 public class Month {
 
     int monthNumber;
-    int yearNumber;
     ArrayList<Payment> payments = new ArrayList<>();
+
+    public Month() {
+
+    }
+
+    public Month(int monthNumber) {
+        this.monthNumber = monthNumber;
+    }
 
     public int getMonthNumber() {
         return monthNumber;
@@ -16,14 +23,6 @@ public class Month {
 
     public void setMonthNumber(int monthNumber) {
         this.monthNumber = monthNumber;
-    }
-
-    public int getYearNumber() {
-        return yearNumber;
-    }
-
-    public void setYearNumber(int yearNumber) {
-        this.yearNumber = yearNumber;
     }
 
     public void addPayment(Payment payment) {

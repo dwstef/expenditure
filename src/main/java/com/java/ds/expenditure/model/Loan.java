@@ -62,4 +62,9 @@ public class Loan {
     public void setPayed(boolean payed) {
         this.payed = payed;
     }
+
+    public void generateSchedule(){
+
+    }
+
 }

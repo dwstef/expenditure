@@ -1,12 +1,24 @@
 package com.java.ds.expenditure.model;
 
+import com.java.ds.expenditure.model.period.Month;
+import com.java.ds.expenditure.model.period.Year;
+
 import java.util.ArrayList;
 
 public class User {
     String login;
     String password;
-    ArrayList<Month> plan = new ArrayList<>();
+    ArrayList<Year> years = new ArrayList<>();
     ArrayList<Loan> loans = new ArrayList<>();
+
+    public User() {
+
+    }
+
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
 
     public String getLogin() {
         return login;
@@ -24,27 +36,41 @@ public class User {
         this.password = password;
     }
 
-    public void addMonth(Month month){
-        this.plan.add(month);
+//    public void addNewMonth(int monthNumber, int yearNumber){
+//        Month month = new Month(monthNumber, yearNumber);
+//        this.plan.add(month);
+//    }
+
+    public void addMYear(Year year) {
+        this.years.add(year);
     }
 
-    public void removeMonth(Month month){
-        this.plan.remove(month);
+    public void removeMonth(Year year) {
+        this.years.remove(year);
     }
 
-    public ArrayList<Month> getPlan() {
-        return plan;
+    public ArrayList<Year> getYears() {
+        return this.years;
     }
 
-    public void addLoan(Loan loan){
+    public void addLoan(Loan loan) {
         this.loans.add(loan);
     }
 
-    public void removeLoan(Loan loan){
+    public void removeLoan(Loan loan) {
         this.loans.remove(loan);
     }
 
     public ArrayList<Loan> getLoans() {
         return loans;
+    }
+
+    public void generateYear(int yearNumber) {
+        Year newYear = new Year(yearNumber);
+        years.add(newYear);
+        for(int i=1;i<=12;i++) {
+            Month month = new Month(i);
+            newYear.getMonths().add(month);
+        }
     }
 }
