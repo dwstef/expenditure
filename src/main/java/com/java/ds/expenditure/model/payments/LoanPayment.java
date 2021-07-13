@@ -6,19 +6,17 @@ import java.time.LocalDate;
 public class LoanPayment implements Payment {
     private String title;
     private BigDecimal value;
-    private int dayOfPayment;
-    private int monthOfPayment;
-    private int yearOfPayment;
     private LocalDate dateOfPayment;
     private boolean payed;
 
-    public LoanPayment(String title, double value, int dayOfPayment, int monthOfPayment, int yearOfPayment) {
+    public LoanPayment() {
+
+    }
+
+    public LoanPayment(String title, BigDecimal value, LocalDate dateOfPayment) {
         this.title = title;
-        this.value = new BigDecimal(value);
-        this.dayOfPayment = dayOfPayment;
-        this.monthOfPayment = monthOfPayment;
-        this.yearOfPayment = yearOfPayment;
-        this.dateOfPayment = dateOfPayment.of(yearOfPayment, monthOfPayment, dayOfPayment);
+        this.value = value;
+        this.dateOfPayment = dateOfPayment;
         this.payed = false;
     }
 
@@ -36,30 +34,6 @@ public class LoanPayment implements Payment {
 
     public void setValue(double value) {
         this.value = new BigDecimal(value);
-    }
-
-    public int getDayOfPayment() {
-        return dayOfPayment;
-    }
-
-    public void setDayOfPayment(int dayOfPayment) {
-        this.dayOfPayment = dayOfPayment;
-    }
-
-    public int getMonthOfPayment() {
-        return monthOfPayment;
-    }
-
-    public void setMonthOfPayment(int monthOfPayment) {
-        this.monthOfPayment = monthOfPayment;
-    }
-
-    public int getYearOfPayment() {
-        return yearOfPayment;
-    }
-
-    public void setYearOfPayment(int yearOfPayment) {
-        this.yearOfPayment = yearOfPayment;
     }
 
     public LocalDate getDateOfPayment() {

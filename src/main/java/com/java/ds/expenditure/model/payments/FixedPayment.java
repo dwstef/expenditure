@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class FixedPayment implements Payment {
 
-
-
+    //    TO DO
 
 }
