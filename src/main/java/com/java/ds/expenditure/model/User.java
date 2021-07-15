@@ -6,16 +6,17 @@ import com.java.ds.expenditure.model.period.Year;
 import java.util.ArrayList;
 
 public class User {
+
     String login;
     String password;
+
     ArrayList<Year> years = new ArrayList<>();
     ArrayList<Loan> loans = new ArrayList<>();
 
-    public User() {
-
-    }
-
     public User(String login, String password) {
+        if(login.equals("") || password.equals("")){
+            throw new IllegalArgumentException();
+        }
         this.login = login;
         this.password = password;
     }
@@ -25,6 +26,9 @@ public class User {
     }
 
     public void setLogin(String login) {
+        if(login.equals("")){
+            throw new IllegalArgumentException();
+        }
         this.login = login;
     }
 
@@ -33,19 +37,21 @@ public class User {
     }
 
     public void setPassword(String password) {
+        if(password.equals("")){
+            throw new IllegalArgumentException();
+        }
         this.password = password;
     }
 
-//    public void addNewMonth(int monthNumber, int yearNumber){
-//        Month month = new Month(monthNumber, yearNumber);
-//        this.plan.add(month);
-//    }
-
-    public void addMYear(Year year) {
-        this.years.add(year);
+    public void addYear(Year year) {
+        if(!years.contains(year) && !this.yearIsAdded(year)){
+            this.years.add(year);
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
-    public void removeMonth(Year year) {
+    public void removeYear(Year year) {
         this.years.remove(year);
     }
 
@@ -67,10 +73,18 @@ public class User {
 
     public void generateYear(int yearNumber) {
         Year newYear = new Year(yearNumber);
-        years.add(newYear);
-        for(int i=1;i<=12;i++) {
-            Month month = new Month(i);
-            newYear.getMonths().add(month);
+        this.addYear(newYear);
+        newYear.generateMonths();
+    }
+
+    public boolean yearIsAdded(Year year) {
+        boolean isAdded = false;
+        for (Year existingYear : this.getYears()) {
+            if (existingYear.getYearNumber() == year.getYearNumber()) {
+                isAdded = true;
+                break;
+            }
         }
+        return isAdded;
     }
 }
