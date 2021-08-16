@@ -9,8 +9,8 @@ public class Year {
 
 
     public Year(int yearNumber) {
-        if (yearNumber < 1000 || yearNumber > 9999) {
-            throw new IllegalArgumentException("Year number must be between 1000 and 9999");
+        if (yearNumber < 1900 || yearNumber > 9999) {
+            throw new IllegalArgumentException("Year number must be between 1900 and 9999");
         }
         this.yearNumber = yearNumber;
     }
@@ -20,8 +20,8 @@ public class Year {
     }
 
     public void setYearNumber(int yearNumber) {
-        if (yearNumber < 1000 || yearNumber > 9999) {
-            throw new IllegalArgumentException("Year number must be between 1000 and 9999");
+        if (yearNumber < 1900 || yearNumber > 9999) {
+            throw new IllegalArgumentException("Year number must be between 1900 and 9999");
         }
         this.yearNumber = yearNumber;
     }
@@ -29,7 +29,9 @@ public class Year {
     public void addMonth(Month month) {
         if (this.months.size() < 12) {
             if (!months.contains(month) && !this.monthIsAdded(month)) {
-                this.months.add(month);
+                if(month.monthYearNumber == this.yearNumber){
+                    this.months.add(month);
+                } else throw new IllegalArgumentException("Month year number is different than number of the year it's being added");
             } else {
                 throw new IllegalArgumentException("Month is already added to the Year");
             }
@@ -49,7 +51,7 @@ public class Year {
 
     public void generateMonths() {
         for (int i = 1; i <= 12; i++) {
-            Month month = new Month(i);
+            Month month = new Month(i, this.yearNumber);
             if (!this.monthIsAdded(month)) {
                 this.addMonth(month);
             } else {

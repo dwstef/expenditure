@@ -9,10 +9,6 @@ public class LoanPayment implements Payment {
     private LocalDate dateOfPayment;
     private boolean payed;
 
-    public LoanPayment() {
-
-    }
-
     public LoanPayment(String title, BigDecimal value, LocalDate dateOfPayment) {
         this.title = title;
         this.value = value;
@@ -20,6 +16,7 @@ public class LoanPayment implements Payment {
         this.payed = false;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
@@ -28,6 +25,7 @@ public class LoanPayment implements Payment {
         this.title = title;
     }
 
+    @Override
     public BigDecimal getValue() {
         return value;
     }
@@ -36,6 +34,7 @@ public class LoanPayment implements Payment {
         this.value = new BigDecimal(value);
     }
 
+    @Override
     public LocalDate getDateOfPayment() {
         return dateOfPayment;
     }

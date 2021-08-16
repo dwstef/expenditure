@@ -4,19 +4,18 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class OneTimePayment implements Payment {
+
     private String title;
     private BigDecimal value;
     private LocalDate dateOfPayment;
 
-    public OneTimePayment(){
-
-    }
     public OneTimePayment(String title, BigDecimal value, LocalDate dateOfPayment){
         this.title = title;
         this.value = value;
         this.dateOfPayment = dateOfPayment;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
@@ -25,6 +24,7 @@ public class OneTimePayment implements Payment {
         this.title = title;
     }
 
+    @Override
     public BigDecimal getValue() {
         return value;
     }
@@ -33,11 +33,12 @@ public class OneTimePayment implements Payment {
         this.value = new BigDecimal(value);
     }
 
-    public void setDateOfPayment(LocalDate dateOfPayment) {
-        this.dateOfPayment = dateOfPayment;
-    }
-
+    @Override
     public LocalDate getDateOfPayment() {
         return dateOfPayment;
+    }
+
+    public void setDateOfPayment(LocalDate dateOfPayment) {
+        this.dateOfPayment = dateOfPayment;
     }
 }
