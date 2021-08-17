@@ -1,9 +1,6 @@
 package com.java.ds.expenditure.model.period;
 
-import com.java.ds.expenditure.model.Loan;
-import com.java.ds.expenditure.model.payments.FixedPayment;
 import com.java.ds.expenditure.model.payments.OneTimePayment;
-import com.java.ds.expenditure.model.payments.Payment;
 import org.junit.Test;
 
 import java.math.BigDecimal;

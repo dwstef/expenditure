@@ -10,7 +10,13 @@ public class OneTimePayment implements Payment {
     private LocalDate dateOfPayment;
 
     public OneTimePayment(String title, BigDecimal value, LocalDate dateOfPayment){
+        if(title.equals("")) {
+            throw new IllegalArgumentException("Payment's title cannot be empty");
+        } else
         this.title = title;
+        if(value.compareTo(BigDecimal.ZERO) < 0){
+            throw new IllegalArgumentException("Payment's value cannot be negative");
+        } else
         this.value = value;
         this.dateOfPayment = dateOfPayment;
     }
@@ -21,7 +27,10 @@ public class OneTimePayment implements Payment {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        if(title.equals("")) {
+            throw new IllegalArgumentException("Payment's title cannot be empty");
+        } else
+            this.title = title;
     }
 
     @Override
@@ -29,8 +38,11 @@ public class OneTimePayment implements Payment {
         return value;
     }
 
-    public void setValue(double value) {
-        this.value = new BigDecimal(value);
+    public void setValue(BigDecimal value) {
+        if(value.compareTo(BigDecimal.ZERO) < 0){
+            throw new IllegalArgumentException("Payment's value cannot be negative");
+        } else
+            this.value = value;
     }
 
     @Override
