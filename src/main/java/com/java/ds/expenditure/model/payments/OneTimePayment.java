@@ -10,7 +10,8 @@ public class OneTimePayment implements Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
+    private long id;
+    
     @Column
     private String title;
 
