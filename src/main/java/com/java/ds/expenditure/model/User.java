@@ -4,13 +4,14 @@ import com.java.ds.expenditure.model.period.Month;
 import com.java.ds.expenditure.model.period.Year;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -102,5 +103,16 @@ public class User {
             }
         }
         return isAdded;
+    }
+
+    public Year getYearByNumber(int yearNumber){
+        Year yearToGet = null;
+
+        for(Year year : this.getYears()){
+            if(year.getYearNumber() == yearNumber){
+                yearToGet = year;
+            }
+        }
+        return yearToGet;
     }
 }

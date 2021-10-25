@@ -1,11 +1,12 @@
 package com.java.ds.expenditure.model.period;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Table(name = "years")
-public class Year {
+public class Year implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

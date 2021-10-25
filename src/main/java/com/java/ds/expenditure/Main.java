@@ -1,12 +1,15 @@
 package com.java.ds.expenditure;
 
 import com.java.ds.expenditure.model.User;
+import com.java.ds.expenditure.model.period.Year;
 import com.java.ds.expenditure.persistence.services.UserService;
+import com.java.ds.expenditure.persistence.services.YearService;
 
 public class Main {
     public static void main(String[] args) {
 
         UserService userService = new UserService();
+        YearService yearService = new YearService();
 
         User user = new User("test", "test1");
         userService.addUser(user);
@@ -14,6 +17,12 @@ public class Main {
 
         userService.addYearToUser(user, 2021);
 
+        User user22 = new User("user2", "test2");
+        userService.addUser(user22);
+
+        Year year = user.getYearByNumber(2021);
+
+        yearService.addMonthToYear(year, 10);
 //
 //        Year b = new Year(2020);
 //        user.addYear(b);

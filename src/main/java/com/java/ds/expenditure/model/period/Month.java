@@ -3,13 +3,14 @@ package com.java.ds.expenditure.model.period;
 import com.java.ds.expenditure.model.payments.Payment;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "months")
-public class Month {
+public class Month implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,8 +22,7 @@ public class Month {
     @Column
     int monthYearNumber;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="month_id")
+    @Transient
     Set<Payment> payments = new HashSet<>();
 
     public Month(int monthNumber, int monthYearNumber) {
