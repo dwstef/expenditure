@@ -1,8 +1,12 @@
 package com.java.ds.expenditure.model.payments;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "loanPayments")
 public class LoanPayment implements Payment {
     private String title;
     private BigDecimal value;

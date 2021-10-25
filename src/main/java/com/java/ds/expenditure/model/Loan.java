@@ -2,17 +2,31 @@ package com.java.ds.expenditure.model;
 
 import com.java.ds.expenditure.model.payments.LoanPayment;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+@Entity
+@Table(name = "loans")
 public class Loan {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    @Column
     String title;
+    @Column
     LocalDate startDate;
+    @Column
     LocalDate endDate;
+    @Column
     BigDecimal totalValue;
+    @Column
     BigDecimal monthlyValue;
+    @Column
     boolean payed;
+
     ArrayList<LoanPayment> repaymentSchedule;
 
     public String getTitle() {

@@ -1,12 +1,22 @@
 package com.java.ds.expenditure.model.period;
 
+import javax.persistence.*;
 import java.util.*;
 
+@Entity
+@Table(name = "years")
 public class Year {
 
-    int yearNumber;
-    ArrayList<Month> months = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
+    @Column
+    int yearNumber;
+
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="year_id")
+    Set<Month> months = new HashSet<>();
 
     public Year(int yearNumber) {
         if (yearNumber < 1900 || yearNumber > 9999) {
@@ -44,8 +54,8 @@ public class Year {
         this.months.remove(month);
     }
 
-    public ArrayList<Month> getMonths() {
-        Collections.sort(months, monthComparator);;
+    public Set<Month> getMonths() {
+//        Collections.sort(months, monthComparator);
         return months;
     }
 

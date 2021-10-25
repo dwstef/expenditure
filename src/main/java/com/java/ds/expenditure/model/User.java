@@ -3,15 +3,31 @@ package com.java.ds.expenditure.model;
 import com.java.ds.expenditure.model.period.Month;
 import com.java.ds.expenditure.model.period.Year;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column
     String login;
+    @Column
     String password;
 
-    ArrayList<Year> years = new ArrayList<>();
-    ArrayList<Loan> loans = new ArrayList<>();
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="user_id")
+    Set<Year> years = new HashSet<>();
+
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="user_id")
+    Set<Loan> loans = new HashSet<>();
 
     public User(String login, String password) {
         if(login.equals("") || password.equals("")){
@@ -55,7 +71,7 @@ public class User {
         this.years.remove(year);
     }
 
-    public ArrayList<Year> getYears() {
+    public Set<Year> getYears() {
         return this.years;
     }
 
@@ -67,7 +83,7 @@ public class User {
         this.loans.remove(loan);
     }
 
-    public ArrayList<Loan> getLoans() {
+    public Set<Loan> getLoans() {
         return loans;
     }
 

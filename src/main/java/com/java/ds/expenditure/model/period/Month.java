@@ -2,14 +2,28 @@ package com.java.ds.expenditure.model.period;
 
 import com.java.ds.expenditure.model.payments.Payment;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name = "months")
 public class Month {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column
     int monthNumber;
+
+    @Column
     int monthYearNumber;
 
-    ArrayList<Payment> payments = new ArrayList<>();
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="month_id")
+    Set<Payment> payments = new HashSet<>();
 
     public Month(int monthNumber, int monthYearNumber) {
         if(monthNumber < 1 || monthNumber > 12){
@@ -59,7 +73,7 @@ public class Month {
         this.payments.remove(payment);
     }
 
-    public ArrayList<Payment> getPayments() {
+    public Set<Payment> getPayments() {
         return payments;
     }
 }

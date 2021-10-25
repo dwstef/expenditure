@@ -1,12 +1,23 @@
 package com.java.ds.expenditure.model.payments;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "payments")
 public class OneTimePayment implements Payment {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    @Column
     private String title;
+
+    @Column
     private BigDecimal value;
+
+    @Column
     private LocalDate dateOfPayment;
 
     public OneTimePayment(String title, BigDecimal value, LocalDate dateOfPayment){
