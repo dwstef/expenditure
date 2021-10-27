@@ -4,7 +4,6 @@ import com.java.ds.expenditure.model.payments.Payment;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +21,8 @@ public class Month implements Serializable {
     @Column
     int monthYearNumber;
 
-    @Transient
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="month_id")
     Set<Payment> payments = new HashSet<>();
 
     public Month(int monthNumber, int monthYearNumber) {

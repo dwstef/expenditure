@@ -82,6 +82,19 @@ public class Year implements Serializable {
         return isAdded;
     }
 
+    public Month getMonthByNumber(int monthNumber){
+        Month monthToGet = null;
+
+        for(Month month : this.getMonths()){
+            if(month.getMonthNumber() == monthNumber){
+                monthToGet = month;
+            }
+        }
+        return monthToGet;
+    }
+
+
+
     static private Comparator<Month> monthComparator = new Comparator<Month>() {
         @Override
         public int compare(Month m1, Month m2) {

@@ -1,6 +1,6 @@
 package com.java.ds.expenditure.model;
 
-import com.java.ds.expenditure.model.payments.LoanPayment;
+import com.java.ds.expenditure.model.payments.Payment;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -27,7 +27,7 @@ public class Loan {
     @Column
     boolean payed;
 
-    ArrayList<LoanPayment> repaymentSchedule;
+    ArrayList<Payment> repaymentSchedule;
 
     public String getTitle() {
         return title;

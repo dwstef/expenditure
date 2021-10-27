@@ -1,6 +1,6 @@
 package com.java.ds.expenditure.model.period;
 
-import com.java.ds.expenditure.model.payments.OneTimePayment;
+import com.java.ds.expenditure.model.payments.Payment;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -36,7 +36,7 @@ public class MonthTest {
     @Test(expected = IllegalArgumentException.class)
     public void testSamePaymentIsNotAddedTwice(){
         month = new Month(12, 2021);
-        OneTimePayment firstPayment = new OneTimePayment("Online payment", BigDecimal.valueOf(100), LocalDate.of(2021, 12, 20));
+        Payment firstPayment = new Payment("Online payment", BigDecimal.valueOf(100), LocalDate.of(2021, 12, 20),1);
 
         month.addPayment(firstPayment);
         month.addPayment(firstPayment);
@@ -45,7 +45,7 @@ public class MonthTest {
     @Test (expected = IllegalArgumentException.class)
     public void testPaymentMonthIsEven(){
         month = new Month(12, 2021);
-        OneTimePayment payment = new OneTimePayment("Online payment", BigDecimal.valueOf(100), LocalDate.of(2021, 11, 20));
+        Payment payment = new Payment("Online payment", BigDecimal.valueOf(100), LocalDate.of(2021, 11, 20),1);
 
         month.addPayment(payment);
     }
@@ -53,7 +53,7 @@ public class MonthTest {
     @Test (expected = IllegalArgumentException.class)
     public void testPaymentYearIsEven(){
         month = new Month(12, 2000);
-        OneTimePayment payment = new OneTimePayment("Online payment", BigDecimal.valueOf(100), LocalDate.of(2021, 12, 20));
+        Payment payment = new Payment("Online payment", BigDecimal.valueOf(100), LocalDate.of(2021, 12, 20),1);
 
         month.addPayment(payment);
     }

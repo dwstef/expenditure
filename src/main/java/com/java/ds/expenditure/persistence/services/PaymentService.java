@@ -2,29 +2,23 @@ package com.java.ds.expenditure.persistence.services;
 
 import com.java.ds.expenditure.model.User;
 import com.java.ds.expenditure.model.payments.Payment;
-import com.java.ds.expenditure.model.period.Month;
-import com.java.ds.expenditure.model.period.Year;
 import com.java.ds.expenditure.persistence.DatabaseConnector;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
-@Component("yearService")
-public class MonthService {
-
+@Component("paymentService")
+public class PaymentService {
     DatabaseConnector connector;
-    public MonthService() {
+    public PaymentService() {
         connector = DatabaseConnector.getInstance();
     }
 
-
-
-    public void addPaymentToMonth (Month month, Payment payment) {
-
-        month.addPayment(payment);
+    public Payment addPayment(Payment payment) {
 
         Transaction transaction = connector.getSession().beginTransaction();
-        connector.getSession().save(month);
+        connector.getSession().save(payment);
         transaction.commit();
-
+        return payment;
     }
+
 }
