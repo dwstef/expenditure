@@ -1,12 +1,12 @@
 package com.java.ds.expenditure.model.payments;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "payments")
-public class Payment {
+public class Payment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,20 +16,20 @@ public class Payment {
     private String title;
 
     @Column
-    private BigDecimal value;
+    private double value;
 
-    @Column
+    @Column(columnDefinition = "DATE")
     private LocalDate dateOfPayment;
 
     @Column
     private int typeOfPayment;
 
-    public Payment(String title, BigDecimal value, LocalDate dateOfPayment, int typeOfPayment){
+    public Payment(String title, double value, LocalDate dateOfPayment, int typeOfPayment){
         if(title.equals("")) {
             throw new IllegalArgumentException("Payment's title cannot be empty");
         } else
         this.title = title;
-        if(value.compareTo(BigDecimal.ZERO) < 0){
+        if(value < 0){
             throw new IllegalArgumentException("Payment's value cannot be negative");
         } else
         this.value = value;
@@ -48,12 +48,12 @@ public class Payment {
             this.title = title;
     }
 
-    public BigDecimal getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(BigDecimal value) {
-        if(value.compareTo(BigDecimal.ZERO) < 0){
+    public void setValue(double value) {
+        if(value < 0.0){
             throw new IllegalArgumentException("Payment's value cannot be negative");
         } else
             this.value = value;

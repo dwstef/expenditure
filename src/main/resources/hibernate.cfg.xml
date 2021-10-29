@@ -4,15 +4,24 @@
 
 <hibernate-configuration>
     <session-factory>
-        <property name="show_sql">false</property>
-        <property name="format_sql">true</property>
-        <property name="dialect">com.java.ds.expenditure.persistence.SQLiteDialect</property>
-        <property name="connection.driver_class">org.sqlite.JDBC</property>
-        <property name="connection.url">jdbc:sqlite:expenditure.db</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
-        <property name="connection.username"></property>
+
+        <!-- JDBC Database connection settings -->
+        <property name="connection.driver_class">org.h2.Driver</property>
+        <property name="connection.url">jdbc:h2:mem:expenditure</property>
+        <property name="connection.username">sa</property>
         <property name="connection.password"></property>
 
+        <!-- Select our SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+
+        <!-- Echo the SQL to stdout -->
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hibernate.hbm2ddl.auto">create</property>
+
+        <!-- dbcp connection pool configuration -->
         <mapping class="com.java.ds.expenditure.model.User"/>
         <mapping class="com.java.ds.expenditure.model.Loan"/>
         <mapping class="com.java.ds.expenditure.model.payments.Payment"/>

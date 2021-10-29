@@ -36,7 +36,7 @@ public class MonthTest {
     @Test(expected = IllegalArgumentException.class)
     public void testSamePaymentIsNotAddedTwice(){
         month = new Month(12, 2021);
-        Payment firstPayment = new Payment("Online payment", BigDecimal.valueOf(100), LocalDate.of(2021, 12, 20),1);
+        Payment firstPayment = new Payment("Online payment", 100.0, LocalDate.of(2021, 12, 20),1);
 
         month.addPayment(firstPayment);
         month.addPayment(firstPayment);
@@ -45,7 +45,7 @@ public class MonthTest {
     @Test (expected = IllegalArgumentException.class)
     public void testPaymentMonthIsEven(){
         month = new Month(12, 2021);
-        Payment payment = new Payment("Online payment", BigDecimal.valueOf(100), LocalDate.of(2021, 11, 20),1);
+        Payment payment = new Payment("Online payment", 100.0, LocalDate.of(2021, 11, 20),1);
 
         month.addPayment(payment);
     }
@@ -53,7 +53,7 @@ public class MonthTest {
     @Test (expected = IllegalArgumentException.class)
     public void testPaymentYearIsEven(){
         month = new Month(12, 2000);
-        Payment payment = new Payment("Online payment", BigDecimal.valueOf(100), LocalDate.of(2021, 12, 20),1);
+        Payment payment = new Payment("Online payment", 100.0, LocalDate.of(2021, 12, 20),1);
 
         month.addPayment(payment);
     }
