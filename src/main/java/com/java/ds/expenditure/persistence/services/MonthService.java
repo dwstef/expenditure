@@ -8,7 +8,7 @@ import com.java.ds.expenditure.persistence.DatabaseConnector;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
-@Component("yearService")
+@Component("monthService")
 public class MonthService {
 
     DatabaseConnector connector;

@@ -14,9 +14,10 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
 
-        PaymentService paymentService = new PaymentService();
-        Payment payment = new Payment("payme", 100.0, LocalDate.of(2020, 10, 31), 1);
-        paymentService.addPayment(payment);
+
+//        PaymentService paymentService = new PaymentService();
+//        Payment payment = new Payment("payme", 100.0, LocalDate.of(2020, 10, 31), 1);
+//        paymentService.addPayment(payment);
 
 
     }

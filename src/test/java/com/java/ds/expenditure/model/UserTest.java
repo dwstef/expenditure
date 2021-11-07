@@ -11,7 +11,7 @@ public class UserTest {
     @Test
     public void testUserLoginIsCorrect() {
         user = new User("login", "password");
-        Assert.assertEquals("login", user.getLogin());
+        Assert.assertEquals("login", user.getUserLogin());
     }
 
     @Test(expected = NullPointerException.class)
@@ -37,32 +37,32 @@ public class UserTest {
     @Test(expected = IllegalArgumentException.class)
     public void testUserSetEmptyLogin() {
         user = new User("login", "password");
-        user.setLogin("");
+        user.setUserLogin("");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testUserSetEmptyPassword() {
         user = new User("login", "password");
-        user.setPassword("");
+        user.setUserPassword("");
     }
 
     @Test(expected = NullPointerException.class)
     public void testUserSetNullLogin() {
         user = new User("login", "password");
-        user.setLogin(null);
+        user.setUserLogin(null);
     }
 
     @Test(expected = NullPointerException.class)
     public void testUserSetNullPassword() {
         user = new User("login", "password");
-        user.setPassword(null);
+        user.setUserPassword(null);
     }
 
     @Test
     public void testUserHasUniqueLogin() {
         user = new User("login", "password");
         User user2 = new User("login", "password");
-        Assert.assertNotEquals(user.getLogin(), user2.getLogin());
+        Assert.assertNotEquals(user.getUserLogin(), user2.getUserLogin());
     }
 
 

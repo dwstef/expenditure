@@ -1,11 +1,9 @@
 package com.java.ds.expenditure.model;
 
-import com.java.ds.expenditure.model.period.Month;
 import com.java.ds.expenditure.model.period.Year;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,51 +11,65 @@ import java.util.Set;
 @Table(name = "users")
 public class User implements Serializable {
 
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="user_id")
+    private long userid;
 
-    @Column
-    String login;
-    @Column
-    String password;
+    @Column(name="user_login")
+    private String userLogin;
 
+    @Column(name="user_password")
+    private String userPassword;
+
+    @Transient
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="user_id")
     Set<Year> years = new HashSet<>();
 
+    @Transient
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="user_id")
     Set<Loan> loans = new HashSet<>();
 
-    public User(String login, String password) {
-        if(login.equals("") || password.equals("")){
+    public User(String userLogin, String userPassword) {
+        if(userLogin.equals("") || userPassword.equals("")){
             throw new IllegalArgumentException();
         }
-        this.login = login;
-        this.password = password;
+        this.userLogin = userLogin;
+        this.userPassword = userPassword;
     }
 
-    public String getLogin() {
-        return login;
+    public long getUserid() {
+        return userid;
     }
 
-    public void setLogin(String login) {
-        if(login.equals("")){
+    private void setUserid(long userid) {
+        this.userid = userid;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        if(userLogin.equals("")){
             throw new IllegalArgumentException();
         }
-        this.login = login;
+        this.userLogin = userLogin;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setPassword(String password) {
-        if(password.equals("")){
+    public void setUserPassword(String userPassword) {
+        if(userPassword.equals("")){
             throw new IllegalArgumentException();
         }
-        this.password = password;
+        this.userPassword = userPassword;
     }
 
     public void addYear(Year year) {
